@@ -1,4 +1,6 @@
 module.exports = function(n) {
+    validate(n);
+
     if (n == 0) return '1';
     
     const isOpposite = n < 0;
@@ -41,4 +43,8 @@ function getCoefficient(x, y) {
 
 function factorial(n) {
     return n ? n * factorial(n - 1) : 1;
+}
+
+function validate(n) {
+    if (typeof n !== 'number') throw new Error('Must be a number');
 }

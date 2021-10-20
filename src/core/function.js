@@ -25,8 +25,20 @@ module.exports = async function execFunction(method) {
         methodParameter = await readValue();
     }
 
-    // #2 Execute method
-    const result = method(methodParameter);
+    // #2 Parse parameter and Execute method
+    let result;
+    try {
+        methodParameter = JSON.parse(methodParameter);
+
+        result = method(methodParameter);
+    } catch (err) {
+        if (err instanceof SyntaxError) {
+            err.message = 'Unable to parse input parameter'
+        }
+        process.stdout.write('Input error: ' + err.message + '\n\n');
+        if (repeat) return execFunction(method);
+        else return process.exit(0);
+    }
 
     // #3 Save result
     try {
