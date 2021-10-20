@@ -25,5 +25,6 @@ function validate(array) {
     }
     array.forEach(item => {
         if (typeof item !== 'number') throw new Error('Must be an array of numbers');
+        if (n % 1 !== 0) throw new Error('Number must be an integer');
     })
 }

@@ -47,4 +47,5 @@ function factorial(n) {
 
 function validate(n) {
     if (typeof n !== 'number') throw new Error('Must be a number');
+    if (n % 1 !== 0) throw new Error('Number must be an integer');
 }
